@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+          prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.example.project_bd.member.SceneProgress">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="15.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="149.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="4.0" prefWidth="20.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="185.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="232.0" minHeight="10.0" prefHeight="171.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="74.0" minHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label text="Search Nota" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+        <TableView fx:id="notaTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <columns>
+                <TableColumn fx:id="kolom_nomerNota" prefWidth="106.0" text="Nomer_Nota" />
+                <TableColumn fx:id="kolom_kasir" prefWidth="62.0" text="Kasir" />
+                <TableColumn fx:id="kolom_grandTotal" prefWidth="101.0" text="Grand_Total" />
+                <TableColumn fx:id="kolom_pembayaran" prefWidth="140.0" text="Pembayaran" />
+                <TableColumn fx:id="kolom_tanggalAmbil" prefWidth="153.0" text="Tanggal_pengambilan" />
+            </columns>
+        </TableView>
+        <TextField fx:id="nomorNota" promptText="No. Nota" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackClick" text="Back" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+    </children>
+</GridPane>
