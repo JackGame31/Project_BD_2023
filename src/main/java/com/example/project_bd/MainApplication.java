@@ -15,8 +15,8 @@ import java.sql.SQLException;
 public class MainApplication extends Application {
     //DATABASE CONNECTION
     final static String driver = "com.mysql.cj.jdbc.Driver";
-    final static String databaseName = "Laundry";
-    final static String url = "jdbc:mysql://localhost:3307/" + databaseName;
+    final static String databaseName = "laundry";
+    final static String url = "jdbc:mysql://localhost/" + databaseName;
     final static String user = "root";
     final static String password = "";
 
@@ -29,16 +29,20 @@ public class MainApplication extends Application {
     //LOGIN
     private Scene SceneLogin;
     private SceneLogin sceneLoginController;
+
     private Scene sceneSignInMember;
     private SceneSignInMember sceneSignInMemberController;
+
     private Scene sceneSignInStaff;
     private SceneSignInStaff sceneSignInStaffController;
 
     //MEMBER
     private Scene sceneMember;
     private SceneMember sceneMemberController;
+
     private Scene sceneOrder;
     private SceneOrder sceneOrderController;
+
     private Scene sceneProgress;
     private SceneProgress sceneProgressController;
 
@@ -86,6 +90,7 @@ public class MainApplication extends Application {
             fxmlLoader = new FXMLLoader(MainApplication.class.getResource("member/SceneProgress.fxml"));
             sceneProgress = new Scene(fxmlLoader.load(), 800, 600);
             sceneProgressController = fxmlLoader.getController();
+
         }
 
         stage.setTitle("Log In");

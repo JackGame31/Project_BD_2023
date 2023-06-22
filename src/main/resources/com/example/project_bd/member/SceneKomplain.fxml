@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Line?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.project_bd.member.SceneKomplainController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fae06e" height="47.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+        <Text fill="#713a3a" layoutX="297.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FORM KOMPLAIN" wrappingWidth="207.20889282226562">
+            <font>
+                <Font name="Tw Cen MT" size="26.0" />
+            </font>
+        </Text>
+        <TextField layoutX="245.0" layoutY="78.0" prefHeight="26.0" prefWidth="270.0" visible="false" />
+        <Text fill="#713a3a" layoutX="210.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASUKKAN ID MEMBER" textAlignment="CENTER" visible="false" wrappingWidth="341.5999999999999">
+            <font>
+                <Font name="Tw Cen MT" size="16.0" />
+            </font>
+        </Text>
+        <Text fill="#713a3a" layoutX="54.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PILIH PESANAN YANG INGIN DI KOMPLAIN" textAlignment="CENTER" visible="false" wrappingWidth="284.0089416503906">
+            <font>
+                <Font name="Tw Cen MT" size="16.0" />
+            </font>
+        </Text>
+        <TableView fx:id="table" layoutX="21.0" layoutY="153.0" prefHeight="228.0" prefWidth="350.0" visible="false">
+            <columns>
+                <TableColumn prefWidth="115.19997787475586" text="ID Nota" />
+                <TableColumn prefWidth="230.3999786376953" text="Tanggal Pengambilan" />
+            </columns>
+        </TableView>
+        <Line endX="777.5858154296875" layoutX="6.0" layoutY="119.0" startX="-100.0" stroke="#e4e4e4" strokeWidth="2.0" />
+        <Line endX="776.5857543945312" endY="6.41424560546875" layoutX="7.0" layoutY="477.0" startX="-100.0" stroke="#e4e4e4" strokeWidth="2.0" />
+        <Text fill="#713a3a" layoutX="297.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DESKRIPSI KOMPLAIN" textAlignment="CENTER" wrappingWidth="207.20889282226562">
+            <font>
+                <Font name="Tw Cen MT" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="deskripsi" layoutX="229.0" layoutY="163.0" prefHeight="228.0" prefWidth="341.0" />
+        <Line endX="319.7857971191406" endY="266.58575439453125" layoutX="80.0" layoutY="132.0" startX="319.7857971191406" startY="-8.585769653320312" stroke="#e4e4e4" strokeWidth="2.0" />
+        <Text fill="#713a3a" layoutX="14.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KOMPENSASI" textAlignment="CENTER" visible="false" wrappingWidth="207.20889282226562">
+            <font>
+                <Font name="Tw Cen MT" size="18.0" />
+            </font>
+        </Text>
+        <TextField layoutX="196.0" layoutY="429.0" prefHeight="26.0" prefWidth="350.0" visible="false" />
+        <Button fx:id="submitKomplain" layoutX="371.0" layoutY="438.0" mnemonicParsing="false" onAction="#insertKomplain" prefHeight="8.0" prefWidth="54.0" text="Submit" />
+        <Line endX="-45.99999237060547" endY="430.0" layoutX="47.0" layoutY="46.0" startX="-46.9999885559082" startY="1.0000076293945312" stroke="#e4e4e4" strokeWidth="2.0" />
+        <Line endX="-45.99999237060547" endY="430.0" layoutX="832.0" layoutY="52.0" startX="-46.9999885559082" startY="1.0000076293945312" stroke="#e4e4e4" strokeWidth="2.0" />
+        <Line endX="770.4142456054688" layoutX="17.0" layoutY="407.0" startX="-100.0" stroke="#e4e4e4" strokeWidth="2.0" />
+    </children>
+</AnchorPane>

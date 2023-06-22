@@ -50,10 +50,20 @@ public class SceneMember implements Initializable {
         Scene progressScene = app.getSceneProgress();
         primStage.setTitle("Progress");
         primStage.setScene(progressScene);
+        app.getSceneProgressController().Initialize();
     }
 
     @FXML
     protected void onComplainClick() {
+    }
+
+    @FXML
+    protected void onLogoutClick(){
+        MainApplication app = MainApplication.getApplicationInstance();
+        Stage primaryStage = app.getPrimaryStage();
+        Scene scene_SignIn = app.getSceneLogin();
+        primaryStage.setScene(scene_SignIn);
+        primaryStage.setTitle("Log In");
     }
 
     public void initializeScene(){

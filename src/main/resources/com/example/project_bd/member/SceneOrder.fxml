@@ -12,34 +12,49 @@
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="44.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="52.0" minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="32.399998092651366" minHeight="10.0" prefHeight="10.399998569488524" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="110.40000143051148" minHeight="10.0" prefHeight="110.40000143051148" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="63.39999999999999" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="50.400000000000006" minHeight="10.0" prefHeight="50.400000000000006" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="47.99999999999997" minHeight="10.0" prefHeight="47.99999999999997" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="34.19999999999999" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="23.399999999999977" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="22.399999999999977" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="35.19999999999999" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="78.19999999999999" minHeight="10.0" prefHeight="59.60000000000002" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="16.19999999999999" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Button mnemonicParsing="false" onAction="#onAddOrderClick" text="Add Order" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-        <Button mnemonicParsing="false" onAction="#onCancelClick" text="Cancel" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-        <ChoiceBox fx:id="listJasa" onMouseClicked="#getListJasa" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-        <Label text="Jenis Jasa" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-        <Label text="Kuantitas" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-        <TextField fx:id="kuantitas" layoutX="100.0" maxHeight="25.0" maxWidth="150.0" minHeight="10.0" minWidth="10.0" prefHeight="25.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-        <Label text="Saldo" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-        <Label text="Total" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-        <Label text="Nominal" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+        <Button mnemonicParsing="false" onAction="#onAddOrderClick" text="Add Order" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+        <Button mnemonicParsing="false" onAction="#onCancelClick" text="Cancel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+        <Label text="Jenis Jasa" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+        <Label text="Kuantitas" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+        <TextField fx:id="kuantitas" layoutX="100.0" maxHeight="25.0" maxWidth="150.0" minHeight="10.0" minWidth="10.0" prefHeight="25.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+        <Label text="Total:" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+        <Label fx:id="nominal" text="Nominal" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
         <Button mnemonicParsing="false" onAction="#onMakeOrderClick" text="Make Order" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-        <TableView fx:id="tabel_pesanan" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+        <TableView fx:id="table_pesanan" prefHeight="171.0" prefWidth="246.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="kolom_jenisJasa" prefWidth="194.40001451969147" text="Jenis Jasa" />
+                <TableColumn fx:id="kolom_kuantitas" prefWidth="67.99995422363281" text="Kuantitas" />
+                <TableColumn fx:id="kolom_harga" prefWidth="126.4000244140625" text="Harga" />
+                <TableColumn fx:id="kolom_subtotal" prefWidth="150.39993286132812" text="Subtotal" />
             </columns>
         </TableView>
+        <MenuBar maxWidth="80.0" prefHeight="26.0" prefWidth="10.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Pilih">
+                    <items>
+                        <MenuItem fx:id="cuci_setrika" mnemonicParsing="false" onAction="#clickCuciSetrika" text="Cuci Setrika" />
+                        <MenuItem fx:id="cuci_lipat" mnemonicParsing="false" onAction="#clickCuciLipat" text="Cuci Lipat" />
+                        <MenuItem fx:id="laundry_sprei_selimut" mnemonicParsing="false" onAction="#clickLaundrySpreiSelimut" text="Laundry Sprei / Selimut" />
+                        <MenuItem fx:id="pengharum_laundry" mnemonicParsing="false" onAction="#clickPengharumLaundry" text="Pengharum Laundry" />
+                        <MenuItem fx:id="dryClean_gaunPesta" mnemonicParsing="false" onAction="#clickDryCleanGaunPesta" text="Dry Clean Gaun Pesta" />
+                        <MenuItem fx:id="dryClean_jas" mnemonicParsing="false" onAction="#clickDryCleanJas" text="Dry Clean Jas" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label fx:id="labelJenisJasa" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
     </children>
 </GridPane>

@@ -2,118 +2,136 @@ package com.example.project_bd.member;
 
 import com.example.project_bd.MainApplication;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class SceneProgress implements Initializable {
     @FXML
-    private TableView<NotaProperty> notaTableView;
+    private TableColumn<getPesanan, String> colNama;
+    @FXML
+    private TableColumn <getPesanan, String>colStatus;
+    @FXML
+    private TableView<getPesanan> pesananTableView;
 
     @FXML
-    private TableColumn<NotaProperty, Integer> kolom_nomerNota;
-    @FXML
-    private TableColumn<NotaProperty, String> kolom_kasir;
-    @FXML
-    private TableColumn<NotaProperty, Integer> kolom_grandTotal;
-    @FXML
-    private TableColumn<NotaProperty, String> kolom_pembayaran;
-    @FXML
-    private TableColumn<NotaProperty, String> kolom_tanggalAmbil;
-    @FXML
-    private TextField nomorNota;
-    @FXML
-    private Button backButton;
+    private TableColumn <getHistoryMember, String>colDeskripsi;
 
-    ObservableList<NotaProperty> notaModelObservableList = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn <getHistoryMember, String>colWaktu;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resource) {
-        //DatabaseConnection connectNow  = new DatabaseConnection();
-        //Connection connectDB  = connectNow.getDBConnection();
+    @FXML
+    private TableView<getHistoryMember> historyTableView;
 
-        //SQL Query
-        String notaViewQuery = "SELECT * FROM nota WHERE nota_id  = " + SceneMember.nota_id; //Tolong disesuaikan nama tablenya
+    ObservableList<getHistoryMember> dataHistory = FXCollections.observableArrayList();
 
-        /*
+
+    public ObservableList<getPesanan> dataPesan (){
+        String SQL = "SELECT  j.nama_jasa, CASE WHEN d.status = 1 THEN 'SELESAI' WHEN d.status = 0 THEN" +
+                " 'BELUM SELESAI' END AS status_pengerjaan, \n" +
+                "d.nota_Id, d.jasa_id FROM detail_pesanan d  INNER JOIN jasa j ON d.jasa_id = j.id where d.nota_id = '"
+                + SceneMember.nota_id + "'";
+
+        ObservableList<getPesanan> dataPesanan = FXCollections.observableArrayList();
         try {
-            Statement statement = connectDB.createStatement();
-            ResultSet queryOutput = statement.executeQuery(notaViewQuery);
 
-            while (queryOutput.next()) {
-                int queryNotaID = queryOutput.getInt("Nomer_Nota");
-                String queryKasir = queryOutput.getString("Kasir");
-                int queryGrandTotal = queryOutput.getInt("Grand_Total");
-                String queryPembayaran = queryOutput.getString("Pembayaran");
-                String queryTanggalAmbil = queryOutput.getString("Tanggal_pengambilan");
+            Connection con = MainApplication.createDatabaseConnection();
+            Statement statement = con.createStatement();
+            ResultSet result = statement.executeQuery(SQL);
+            getPesanan getP;
+            int column_count = result.getMetaData().getColumnCount();
+            if(column_count > 0) // ada data
+            {
+                while (result.next()){
+                    getP = new getPesanan(result.getString("nama_jasa"),
+                            result.getString("status_pengerjaan"),
+                            result.getInt("nota_id"),
+                            result.getInt("jasa_id"));
 
-                //Populate the ObservableList
-                notaModelObservableList.add(new NotaModel(queryNotaID, queryKasir, queryGrandTotal, queryPembayaran, queryTanggalAmbil));
+                    dataPesanan.add(getP); }
+                con.close();
             }
 
-            kolom_nomerNota.setCellValueFactory(new PropertyValueFactory<>("nomer_nota"));
-            kolom_kasir.setCellValueFactory(new PropertyValueFactory<>("nama_kasir"));
-            kolom_grandTotal.setCellValueFactory(new PropertyValueFactory<>("grand_total"));
-            kolom_pembayaran.setCellValueFactory(new PropertyValueFactory<>("pembayaran"));
-            kolom_tanggalAmbil.setCellValueFactory(new PropertyValueFactory<>("tanggal_ambil"));
+        }catch (Exception e){e.printStackTrace();}
+        return dataPesanan;
+    }
 
-            notaTableView.setItems(notaModelObservableList);
+    private ObservableList<getPesanan> pesananListData;
+    //UNTUK MENUNJUKKAN DATA DI TABLEVIEW
+    public void PesananShowData(){
+        pesananListData =  dataPesan();
 
-
-            //Initial filtered list
-            FilteredList<NotaModel> filteredData = new FilteredList<>(notaModelObservableList, b -> true);
-
-            nomorNota.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(notaModel -> {
-
-                    //If no search value then display all records (semua nota dicetak)
-                    if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
-                        return true;
-                    }
-
-                    String searchKeyword = newValue.toLowerCase();
-
-                    if (notaModel.getNomer_nota().toString().indexOf(searchKeyword) > -1) {
-                        return true; //means we found a match in nomer nota
-                    } else if (notaModel.getNama_kasir().toLowerCase().indexOf(searchKeyword) > -1) {
-                        return true;
-                    } else if (notaModel.getGrand_total().toString().indexOf(searchKeyword) > -1) {
-                        return true;
-                    } else if (notaModel.getPembayaran().toLowerCase().indexOf(searchKeyword) > -1) {
-                        return true;
-                    } else if (notaModel.getTanggal_ambil().toLowerCase().indexOf(searchKeyword) > -1) {
-                        return true;
-                    } else {
-                        return false; // no match found
-                    }
+        colNama.setCellValueFactory(new PropertyValueFactory<>("nama_jasa"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
 
-                });
-            });
+        pesananTableView.setItems(pesananListData);
 
-            SortedList<NotaModel> sortedData  = new SortedList<>(filteredData);
+    }
 
-            //Bind sorted result with Table View
-            sortedData. comparatorProperty().bind(notaTableView.comparatorProperty());
+    public void fillDetailTable( int js)
+    {
+        try {
+            Connection con = MainApplication.createDatabaseConnection();
+            String query ="SELECT waktu, deskripsi FROM  history_detail_pesanan WHERE nota_id  = '" + SceneMember.nota_id
+                    + "' and jasa_id ='"+js+"'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
 
-            //Apply filtered and sorted data to the Table View
-            notaTableView.setItems(sortedData);
 
+            int column_count = rs.getMetaData().getColumnCount();
+            dataHistory.clear();
+            if(column_count > 0) // ada data
+            {
+                while (rs.next())
+                {
+                    getHistoryMember getH = new getHistoryMember(rs.getTimestamp("waktu"),
+                            rs.getString("deskripsi"));
+
+                    dataHistory.add(getH);
+                }
+            }
+            con.close();
         } catch (SQLException e) {
-            Logger.getLogger(SceneProgress.class.getSimpleName()).log(Level.SEVERE, null, e);
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
-         */
+        historyTableView.setItems(dataHistory);
+    }
+
+
+
+    public void Initialize(){
+        PesananShowData();
+
+
+        pesananTableView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<getPesanan>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends getPesanan> change) {
+                getPesanan selected = pesananTableView.getSelectionModel().getSelectedItem();
+
+                if (selected != null) {
+                    fillDetailTable(selected.getJasa_id());
+                }
+
+            }
+        });
+        historyTableView.setItems(dataHistory);
+        colWaktu.setCellValueFactory(new PropertyValueFactory<>("waktu"));
+        colDeskripsi.setCellValueFactory(new PropertyValueFactory<>("deskripsi"));
+
+
 
     }
 
@@ -124,5 +142,15 @@ public class SceneProgress implements Initializable {
         Scene memberScene = app.getSceneMember();
         primStage.setTitle("Member View");
         primStage.setScene(memberScene);
+
+//        historyTableView.getItems().clear();
+//        pesananTableView.getItems().clear();
+        pesananListData = FXCollections.observableArrayList();
+        dataHistory = FXCollections.observableArrayList();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

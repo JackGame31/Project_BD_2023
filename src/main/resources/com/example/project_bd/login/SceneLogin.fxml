@@ -33,7 +33,7 @@
         <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Button fx:id="login" mnemonicParsing="false" onAction="#CekValiditasLogin" prefHeight="26.0" prefWidth="69.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
         <Text layoutX="160.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New member?" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-        <Button fx:id="mbsign" mnemonicParsing="false" onAction="#SwitchkeSceneMember" text="sign member" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+        <Button fx:id="mbsign" mnemonicParsing="false" onAction="#SwitchkeSignInMember" text="sign member" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
         <Text fx:id="invalid" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
     </children>
 </GridPane>

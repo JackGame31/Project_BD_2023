@@ -35,11 +35,11 @@ public class SceneLogin {
     }
 
     @FXML
-    protected void SwitchkeSceneMember() {
+    protected void SwitchkeSignInMember() {
         MainApplication app = MainApplication.getApplicationInstance();
         Stage primaryStage = app.getPrimaryStage();
-        Scene scene_member = app.getSceneMember();
-        primaryStage.setScene(scene_member);
+        Scene scene_SignInMember = app.getSceneSignInMember();
+        primaryStage.setScene(scene_SignInMember);
     }
 
 
@@ -57,7 +57,9 @@ public class SceneLogin {
                 while (rs.next()){
                     SceneMember.member_id = rs.getInt(1);
                 }
+
                 SwitchSceneMember();
+
             } else {
                 query = "select * from staff where email = '" + email.getText()
                         + "' and password ='"+password.getText()+"'";
@@ -97,6 +99,7 @@ public class SceneLogin {
         SceneMember controller = app.getSceneMemberController();
         controller.initializeScene();
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Member View");
     }
 
 }
